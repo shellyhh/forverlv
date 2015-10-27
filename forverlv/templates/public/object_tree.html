@@ -1,0 +1,46 @@
+<script>
+    var setting = {
+        check: {
+            enable: true,
+            chkStyle: "radio",
+            radioType: "all"
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onClick: onClick,
+            onCheck: onCheck
+        }
+    };
+    function onClick(e, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj(treeId);
+        zTree.checkNode(treeNode, !treeNode.checked, null, true);
+        return false;
+    }
+    function onCheck(e, treeId, treeNode){
+        var objId= '';
+        var objName = '';
+        var zTree = $("#zTree_{{ name }}");
+        if(treeNode.checked){
+            objId = treeNode.id;
+            objName = treeNode.name;
+        }
+        var obj = $("#id_{{ name }}");
+        obj.attr("value", objId);
+        var objDisplay = $("#display_{{ name }}");
+        objDisplay.attr("value", objName);
+        $(zTree).toggle();
+    };
+    var zNodes = {{ nodes }}
+    $(document).ready(function(){
+        var tree = $("#tree_{{ name }}");
+        var zTree = $("#zTree_{{ name }}");
+        $.fn.zTree.init($(tree), setting, zNodes);
+        $("#down_{{ name }}").click(function(){
+            $(zTree).toggle();
+        })
+    });
+</script>

@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    font-size: 14px;
+}
+.navbar {
+    position: relative;
+    border-bottom: 1px solid #178acc;
+    min-height: 50px;
+}
+.navbar-default {
+    background-color: #2fa4e7!important;
+    border-color: #1995dc;
+}
+.navbar-default .btn-group {
+    margin: 7px 5px 0 5px;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.button-margin {
+    margin: 0 10px 0 5px;
+}
+.button-padding{
+    padding: 1px 8px !important;
+}
+.form-input {
+    width: 400px;
+}
+.form-actions {
+    padding: 20px 20px 20px 20px;
+    border-top: 1px solid #DEDEDE;
+}
+.box-header .dropdown .btn {
+    padding: 0 !important;
+    margin-left: 20px;
+}
+#toolbar .btn-group a {
+    text-decoration: underline!important;
+}
+
+div.zTreeBackground {
+    border: 1px solid #ccc;
+    background: #fff;
+    width: 100%;
+    height: 150px;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+.object-action {
+  margin: 0 30px 0 30px !important;
+  border-bottom: 1px solid #DEDEDE;
+}

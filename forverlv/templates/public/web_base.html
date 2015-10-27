@@ -1,0 +1,179 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'public/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'public/bootstrap-3.3.5-dist/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'public/charisma-app.css' %}">
+    <link rel="stylesheet" href="{% static 'public/layer-v2.0/layer/skin/layer.css' %}"/>
+    <link rel="stylesheet" href="{% static 'public/DataTables/datatables.min.css' %}"/>
+
+    <link rel="stylesheet" href="{% static 'public/zTree_v3/css/metroStyle/metroStyle.css' %}" type="text/css">
+
+    <script type="text/javascript" src="{% static 'public/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'public/bootstrap-3.3.5-dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'public/DataTables/datatables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'public/DataTables/fnReloadAjax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'public/layer-v2.0/layer/layer.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'public/zTree_v3/js/jquery.ztree.core-3.5.js' %}"></script>
+    <script type="text/javascript" src="{% static 'public/zTree_v3/js/jquery.ztree.excheck-3.5.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'public/lib/jquery.i18n.properties-1.0.9.js' %}"></script>
+    <script type="text/javascript" src="{% static 'public/lib/public.util.js' %}"></script>
+    <script type="text/javascript" src="{% static 'public/web_base.js' %}"></script>
+</head>
+<body>
+    <!-- hidden value -->
+    <input id="id_app" type="hidden" value="{{ app_label }}"/>
+    <input id="id_model" type="hidden" value="{{ model_name }}"/>
+    <!-- top bar -->
+    <div class="navbar navbar-default">
+      <!-- user dropdown starts -->
+      <div class="btn-group pull-right">
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> {{ user.username }} </span>
+              <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a id="id_logout" href="javascript:void(0)">Logout</a></li>
+          </ul>
+      </div>
+      <!-- user dropdown ends -->
+    </div>
+    <!-- left menu -->
+    <div class="ch-container">
+        <div class="row">
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                          <li class="nav-header">Main</li>
+                          {% for app in apps %}
+                            <li ref="{{ app.app_url }}"><a href="javascript:void(0)">
+                              <span>{{ app.verbose_name }}</span>
+                              {% if app.models %}
+                                <i class="glyphicon glyphicon-chevron-down right"></i></a>
+                                <ul class="nav nav-pills nav-stacked" style="display: block;">
+                                  {% for model in app.models %}
+                                    <li><a href="{{ model.url }}">
+                                      {{ model.verbose_name }}
+                                    </a></li>
+                                  {% endfor %}
+                                </ul>
+                              {% else %}
+                                </a>
+                              {% endif %}
+                            </li>
+                          {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="content" class="col-sm-10 col-lg-10">
+                {% block main %}
+                <div>
+                    <ul class="breadcrumb">
+                        <li><i class="glyphicon glyphicon-flag"></i>
+                            <span>{{ app_label }}</span>
+                        </li>
+                        <li>
+                            <span>{{ model_name }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="box col-md-12">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <div id="model_actions" class="dropdown" title="Employee Tools">
+                                    <a id="drop5" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <h2>{{ model_name }}</h2>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"></ul>
+                                </div>
+                                <div class="btn-group pull-right">
+                                    <button class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-th-list"></span>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" >
+                                        <li><a href="">OKOKO</a></li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group pull-right">
+                                    <button class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-sort"></span>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" >
+                                        <li><a href="">OKOKO</a></li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group pull-right">
+                                    <button class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" >
+                                        <li><a href="">OKOKO</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <table id="data-table" class="table table-striped table-bordered dataTable">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+            <div id="edit-content" class="col-sm-10 col-lg-10" style="display: none"></div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function(){
+        document.onkeydown = function(e){
+          if(e && e.keyCode == 27){
+            $("#id_logout").click();
+            return false;
+          };
+        };
+        $(".main-menu").on('click', '>li', function(){
+          var app_ref = $(this).attr('ref');
+          var lis = $(this).find('li');
+          if($(lis).length > 0){
+            $(this).find('>a>i').toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-left');
+            $(this).find('>ul').toggle();
+          }else{
+            window.location.href = app_ref;
+          }
+        });
+        $("#id_logout").click(function(){
+          layer.confirm('Sure you want to logout ?', {
+              title:'Tip',
+              btn: ['Sure','Cancel'] //buttons
+          }, function(){
+              window.location.href = '/accounts/logout/';
+          });
+        });
+        {% block render_grid %}
+        {% autoescape off %}
+        $(".box-inner").model_grid({
+          app_label: "{{ app_label }}",
+          model_name: "{{ model_name }}",
+          heads : {{ heads }},
+          actions: {{ actions }}
+        })
+        {% endautoescape %}
+        {% endblock %}
+    });
+    </script>
+</body>
+</html>

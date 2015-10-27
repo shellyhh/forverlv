@@ -1,0 +1,47 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="{% static 'public/bootstrap-3.3.5-dist/css/bootstrap.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'system/css/login.css' %}"/>
+  <script type="text/javascript" src="{% static 'public/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'public/bootstrap-3.3.5-dist/js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'public/lib/jquery.i18n.properties-1.0.9.js' %}"></script>
+  <script type="text/javascript" src="{% static 'public/lib/public.util.js' %}"></script>
+</head>
+<body>
+<div class="ch-container">
+  <div class="row">
+    <div class="col-md-12 center login-header">
+      <h2>Welcome to forverlv</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="well col-md-5 center login-box">
+      <div class="alert alert-info">
+          {% trans 'Please login with your Username and Password.' %}
+      </div>
+
+      <form id="login_form" class="">
+        <fieldset>
+          {% for f in form %}
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-{{ f.name }} red"></i></span>
+                {{ f }}
+            </div>
+            <div class="clearfix"></div><br>
+          {% endfor %}
+          <p class="center col-md-5">
+              <button id="login_btn" type="button" class="btn btn-primary">{% trans 'Login' %}</button>
+          </p>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{% static 'system/jslib/login.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+h2 {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #317eac;
+}
+div.center, p.center {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+  display: block;
+  text-align: center;
+}
+.login-header {
+  padding-top: 30px;
+  height: 120px
+}
+.ch-container {
+  padding: 0 20px;
+}
+.red {
+  color: #B94846;
+}
+.login-box .btn{
+  margin-top: 15px;
+  width: 100%;
+}
+.glyphicon-username:before {
+  content: "\e008";
+}
+.glyphicon-password:before {
+  content: "\e033";
+}

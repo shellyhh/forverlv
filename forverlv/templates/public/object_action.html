@@ -1,0 +1,22 @@
+<div class="row object-action" style="{% if form.as_table  %}width:650px;min-height: 300px;{% else %}width:400px;{% endif %}">
+  <div class="col-md-12" style="margin-top: 20px">
+    {% if help_text %}
+      <div class="panel panel-default">
+        <div class="panel-body">
+          {{ help_text }}
+        </div>
+      </div>
+    {% endif %}
+    <form id="id_action_form" class="form-horizontal">
+      {% autoescape off %}
+      {% for f in  form %}
+        <div class="form-group" title="{{ f.help_text }}">
+          <label for="{{ f.id_for_label }}" class="col-sm-4 control-label">{{ f.label }}</label>
+          <div class="col-sm-6">{{ f }}</div>
+        </div>
+      {% endfor %}
+      {% endautoescape %}
+      <div id="id_info" class="alert"></div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+{% load staticfiles %}
+{% load base_tags %}
+<div>
+    <ul class="breadcrumb">
+        <li><i class="glyphicon glyphicon-flag"></i>
+            <span>Personnel</span>
+        </li>
+        <li>
+            <span>Employee</span>
+        </li>
+        <li>
+            <span>Add</span>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2>Action Form</h2>
+                <div class="box-icon">
+                    <a href="" class="btn btn-close btn-round btn-default">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content">
+                 <form id="id_model_form" role="form" class="form-horizontal" style="padding-top: 15px;padding-bottom: 15px">
+                     {% autoescape off %}
+                        {% for f in form %}
+                            <div class="form-group" title="{{ f.help_text }}">
+                                <label for="{{ f.id_for_label }}" class="col-sm-2 control-label">{{ f.label }}</label>
+                                <div class="col-sm-6">{{ f }}</div>
+                            </div>
+                        {% endfor  %}
+                     {% endautoescape %}
+                     <div id="id_info" class="alert">
+                     </div>
+                     <div class="form-actions">
+                        <a href="javascript:void(0)" class="btn btn-primary right" style="margin: 0 10px 10px 0">Save and Continue</a>
+                        <a href="javascript:void(0)" class="btn btn-success right" style="margin: 0 10px 10px 0">Save</a>
+                     </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>
